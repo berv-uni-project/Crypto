@@ -41,67 +41,64 @@ public class Crypto {
             outputFile = args[3];
             try {
                 // Initialitation Input
-                Scanner sc = new Scanner(System.in);
-                BufferedWriter outStream = new BufferedWriter(new FileWriter(outputFile));
-                String inputText = "";
-                String key = "kriptografi";
-                if (inputOption.equalsIgnoreCase("-k")) {
-                    inputText = Crypto.prompt("Enter message:", sc, 1);
-                    key = Crypto.prompt("Enter key:", sc, 1);
+                if (args.length == 4) {
+                    Scanner sc = new Scanner(System.in);
+                    BufferedWriter outStream = new BufferedWriter(new FileWriter(outputFile));
+                    String inputText = "";
+                    String key = "kriptografi";
+                    if (inputOption.equalsIgnoreCase("-k")) {
+                        inputText = Crypto.prompt("Enter message:", sc, 1);
+                        key = Crypto.prompt("Enter key:", sc, 1);
+                    } else {
+                        String filePath = Crypto.prompt("Enter file path:", sc, 1);
+                        inputText = readFileAsString(filePath);
+                        key = Crypto.prompt("Enter key:", sc, 1);
+                    }
+                    System.out.printf("\nOriginal String:\n %s\n", inputText);
+                    String output = "";
+                    String decryptOutput = "";
+                    if (cipher.equalsIgnoreCase("-vcs")) {
+                        // Vigenere Cipher Standard
+                        if (outputFormat.equalsIgnoreCase("-d")) {
+                            output = VigenereCipher.encryptbrute(inputText, key);
+                        } else if (outputFormat.equalsIgnoreCase("-ws")) {
+                            output = VigenereCipher.encrypt(inputText, key);
+                        } else {
+                            output = VigenereCipher.encrypt5(inputText, key);
+                        }
+                        decryptOutput = VigenereCipher.decrypt(output, key);
+                    } else if (cipher.equalsIgnoreCase("-vce")) {
+                        // Vigenere Cipher Extended
+                        if (outputFormat.equalsIgnoreCase("-d")) {
+                            output = VigenereCipherExtended.encryptbrute(inputText, key);
+                        } else if (outputFormat.equalsIgnoreCase("-ws")) {
+                            output = VigenereCipherExtended.encrypt(inputText, key);
+                        } else {
+                            output = VigenereCipherExtended.encrypt5(inputText, key);
+                        }
+                        decryptOutput = VigenereCipherExtended.decrypt(output, key);
+                    } else {
+                        // Playfair
+                        if (outputFormat.equalsIgnoreCase("-d")) {
+                            output = PlayfairCipher.encrypt(inputText, key, true);
+                        } else if (outputFormat.equalsIgnoreCase("-ws")) {
+                            output = PlayfairCipher.encrypt(inputText, key, true);
+                        } else {
+                            output = PlayfairCipher.encrypt5(inputText, key, true);
+                        }
+                        decryptOutput = PlayfairCipher.decrypt(output);
+                    }
+                    outStream.write(output);
+                    System.out.printf("\nEncode Text:\n %s\n", output);
+                    System.out.printf("\nDecode Text:\n %s\n", decryptOutput);
+                    outStream.close();
                 } else {
+                    Scanner sc = new Scanner(System.in);
                     String filePath = Crypto.prompt("Enter file path:", sc, 1);
-                    if (writeOption.equalsIgnoreCase("-b")) {
-                        File file = new File(filePath);
-                        FileInputStream imageInFile = new FileInputStream(file);
-                        byte data[] = new byte[(int) file.length()];
-                        inputText = data.toString();
-                    } else {
-                        inputText = readFileAsString(filePath);                        
-                    }
-                    key = Crypto.prompt("Enter key:", sc, 1);
+                    String key = Crypto.prompt("Enter key:", sc, 1);
+                    VigenereCipherExtended.encryptFile(filePath, outputFile, key);
+                    VigenereCipherExtended.decryptFile(outputFile, decryptedFile, key);
                 }
-                System.out.printf("\nOriginal String:\n %s\n", inputText);
-                String output = "";
-                String decryptOutput = "";
-                if (cipher.equalsIgnoreCase("-vcs")) {
-                    // Vigenere Cipher Standard
-                    if (outputFormat.equalsIgnoreCase("-d")) {
-                        output = VigenereCipher.encryptbrute(inputText, key);
-                    } else if (outputFormat.equalsIgnoreCase("-ws")) {
-                        output = VigenereCipher.encrypt(inputText, key);
-                    } else {
-                        output = VigenereCipher.encrypt5(inputText, key);
-                    }
-                    decryptOutput = VigenereCipher.decrypt(output, key);
-                } else if (cipher.equalsIgnoreCase("-vce")) {
-                    // Vigenere Cipher Extended
-                    if (outputFormat.equalsIgnoreCase("-d")) {
-                        output = VigenereCipherExtended.encryptbrute(inputText, key);
-                    } else if (outputFormat.equalsIgnoreCase("-ws")) {
-                        output = VigenereCipherExtended.encrypt(inputText, key);
-                    } else {
-                        output = VigenereCipherExtended.encrypt5(inputText, key);
-                    }
-                    decryptOutput = VigenereCipherExtended.decrypt(output, key);
-                } else {
-                    // Playfair
-                    if (outputFormat.equalsIgnoreCase("-d")) {
-                        output = PlayfairCipher.encrypt(inputText, key, true);
-                    } else if (outputFormat.equalsIgnoreCase("-ws")) {
-                        output = PlayfairCipher.encrypt(inputText, key, true);
-                    } else {
-                        output = PlayfairCipher.encrypt5(inputText, key, true);
-                    }
-                    decryptOutput = PlayfairCipher.decrypt(output);
-                }
-                outStream.write(output);
-                if (args.length > 4) {
-                    byte[] allBytes = decryptOutput.getBytes();
-                    Files.write(Paths.get(decryptedFile), allBytes);
-                }
-                System.out.printf("\nEncode Text:\n %s\n", output);
-                System.out.printf("\nDecode Text:\n %s\n", decryptOutput);
-                outStream.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
