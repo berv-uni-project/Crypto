@@ -12,6 +12,12 @@ Some code modify from:
 * https://rosettacode.org/wiki/Playfair_cipher
 * https://rosettacode.org/wiki/Vigen%C3%A8re_cipher
 
+## Run Projects
+
+```bash
+./gradlew run -q --console=plain
+```
+
 
 ## LICENSE
 
