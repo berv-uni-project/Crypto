@@ -3,12 +3,15 @@ language: java
 jdk:
   - oraclejdk11
 
-install: gradle assemble
+before_install:
+  - chmod +x gradlew
+
+install: ./gradlew assemble
 
 script:
-  - gradle check
-  - gradle build
-  - gradle javadoc
+  - ./gradlew check
+  - ./gradlew build
+  - ./gradlew javadoc
 
 deploy:
   provider: pages
