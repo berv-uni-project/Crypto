@@ -1,0 +1,22 @@
+language: java
+
+jdk:
+  - oraclejdk11
+
+install: gradle assemble
+
+script:
+  - gradle check
+  - gradle build
+  - gradle javadoc
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: build/docs/javadoc
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  target-branch: gh-pages
+  committer-from-gh: true
+  on:
+    branch: master
