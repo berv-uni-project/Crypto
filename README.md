@@ -1,6 +1,9 @@
 # Crypto
 
 [![Build Status](https://travis-ci.org/berv-uni-project/Crypto.svg?branch=master)](https://travis-ci.org/berv-uni-project/Crypto)
+[![codecov](https://codecov.io/gh/berv-uni-project/Crypto/branch/master/graph/badge.svg)](https://codecov.io/gh/berv-uni-project/Crypto)
+
+
 
 Implementation of Simple Cryptography Algorithm in Java
 
