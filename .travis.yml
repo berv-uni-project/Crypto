@@ -8,8 +8,12 @@ before_install:
 
 install: ./gradlew assemble
 
-script:
+before_script:
   - ./gradlew check
+  - ./gradlew jacocoTestReport
+  - bash <(curl -s https://codecov.io/bash)
+
+script:
   - ./gradlew build
   - ./gradlew javadoc
 
