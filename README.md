@@ -1,9 +1,6 @@
 # Crypto
 
-[![Build Status](https://travis-ci.org/berv-uni-project/Crypto.svg?branch=master)](https://travis-ci.org/berv-uni-project/Crypto)
 [![codecov](https://codecov.io/gh/berv-uni-project/Crypto/branch/master/graph/badge.svg)](https://codecov.io/gh/berv-uni-project/Crypto)
-
-
 
 Implementation of Simple Cryptography Algorithm in Java
 
@@ -11,6 +8,12 @@ Some code modify from:
 
 * https://rosettacode.org/wiki/Playfair_cipher
 * https://rosettacode.org/wiki/Vigen%C3%A8re_cipher
+
+## Build Status
+
+| Travis | Github Action - Java | Github Action - Java Publish |
+|:------:|:--------------------:|:----------------------------:|
+| [![Build Status](https://travis-ci.com/berv-uni-project/Crypto.svg?branch=master)](https://travis-ci.com/berv-uni-project/Crypto) | ![Java CI with Gradle](https://github.com/berv-uni-project/Crypto/workflows/Java%20CI%20with%20Gradle/badge.svg) | ![Gradle Package](https://github.com/berv-uni-project/Crypto/workflows/Gradle%20Package/badge.svg) |
 
 ## Run Projects
 
