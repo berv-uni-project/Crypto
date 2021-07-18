@@ -13,7 +13,7 @@ jobs:
     name: Java ${{ matrix.Java }} CI
     strategy:
       matrix:
-        java: [ '11', '15' ]
+        java: [ '8', '11' ]
     steps:
     - uses: actions/checkout@v2
     - name: Setup Java
