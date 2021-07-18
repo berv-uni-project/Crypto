@@ -1,7 +1,7 @@
 package crypto.sample.java.crypto;
 
-import java.awt.*;
 import java.util.Scanner;
+import java.awt.Point;
 
 public class PlayfairCipher {
     private static char[][] charTable;
@@ -52,6 +52,11 @@ public class PlayfairCipher {
         return encode5(prepareText(message, changeJtoI));
     }
 
+    /**
+     * Decryption
+     * @param message encrypted text
+     * @return Decrypted text
+     */
     public static String decrypt(String message) {
         String text = message.replaceAll("[^A-Z]", "");
         return decode(text);
@@ -103,11 +108,11 @@ public class PlayfairCipher {
     }
 
     private static String encode5(String s) {
-        String chiper = encode(s);
+        String chipper = encode(s);
         StringBuilder sb = new StringBuilder();
         int count = 0;
-        for (int j = 0; j < chiper.length(); j++) {
-            sb.append(chiper.charAt(j));
+        for (int j = 0; j < chipper.length(); j++) {
+            sb.append(chipper.charAt(j));
             count = ++count % 5;
             if (count == 0) {
                 sb.append(' ');

@@ -11,9 +11,9 @@ Some code modify from:
 
 ## Build Status
 
-| Travis | Github Action - Java | Github Action - Java Publish |
-|:------:|:--------------------:|:----------------------------:|
-| [![Build Status](https://travis-ci.com/berv-uni-project/Crypto.svg?branch=master)](https://travis-ci.com/berv-uni-project/Crypto) | ![Java CI with Gradle](https://github.com/berv-uni-project/Crypto/workflows/Java%20CI%20with%20Gradle/badge.svg) | ![Gradle Package](https://github.com/berv-uni-project/Crypto/workflows/Gradle%20Package/badge.svg) |
+| Github Action - Java | Github Action - Java Publish |
+|:--------------------:|:----------------------------:|
+| ![Java CI with Gradle](https://github.com/berv-uni-project/Crypto/workflows/Java%20CI%20with%20Gradle/badge.svg) | ![Gradle Package](https://github.com/berv-uni-project/Crypto/workflows/Gradle%20Package/badge.svg) |
 
 ## Run Projects
 

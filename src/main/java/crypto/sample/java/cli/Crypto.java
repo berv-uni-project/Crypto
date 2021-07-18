@@ -15,7 +15,7 @@ public class Crypto {
         String cipher = "-vcs";
         String inputOption = "-k";
         String outputFormat = "-d";
-        String outputFile = "output.txt";
+        String outputFile;
         String decryptedFile = "decrypted.txt";
         String writeOption = "-s";
         if (args.length < 4) {
@@ -41,22 +41,21 @@ public class Crypto {
             outputFile = args[3];
             try {
                 // Initialization Input
+                Scanner sc = new Scanner(System.in);
                 if (args.length == 4) {
-                    Scanner sc = new Scanner(System.in);
                     BufferedWriter outStream = new BufferedWriter(new FileWriter(outputFile));
-                    String inputText = "";
-                    String key = "kriptografi";
+                    String inputText;
+                    String key;
                     if (inputOption.equalsIgnoreCase("-k")) {
                         inputText = Crypto.prompt("Enter message:", sc, 1);
-                        key = Crypto.prompt("Enter key:", sc, 1);
                     } else {
                         String filePath = Crypto.prompt("Enter file path:", sc, 1);
                         inputText = readFileAsString(filePath);
-                        key = Crypto.prompt("Enter key:", sc, 1);
                     }
+                    key = Crypto.prompt("Enter key:", sc, 1);
                     System.out.printf("\nOriginal String:\n %s\n", inputText);
-                    String output = "";
-                    String decryptOutput = "";
+                    String output;
+                    String decryptOutput;
                     if (cipher.equalsIgnoreCase("-vcs")) {
                         // Vigenere Cipher Standard
                         if (outputFormat.equalsIgnoreCase("-d")) {
@@ -93,7 +92,6 @@ public class Crypto {
                     System.out.printf("\nDecode Text:\n %s\n", decryptOutput);
                     outStream.close();
                 } else {
-                    Scanner sc = new Scanner(System.in);
                     String filePath = Crypto.prompt("Enter file path:", sc, 1);
                     String key = Crypto.prompt("Enter key:", sc, 1);
                     VigenereCipherExtended.encryptFile(filePath, outputFile, key);
@@ -109,14 +107,14 @@ public class Crypto {
         byte[] bytes = input.getBytes();
         StringBuilder binary = new StringBuilder();
         for (byte b : bytes) {
-            binary.append(Integer.toBinaryString((int) b));
+            binary.append(Integer.toBinaryString(b));
             binary.append(' ');
         }
         return binary.toString();
     }
 
     public static String readFileAsString(String fileName) throws Exception {
-        String data = "";
+        String data;
         data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
