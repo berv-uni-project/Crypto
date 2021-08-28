@@ -14,4 +14,14 @@ public class PlayfairCipherTest {
         String actualText = decodedText.replace("Z", "");
         Assert.assertEquals(plainText, actualText);
     }
+
+    @Test
+    public void encodeAndDecodeCorrectlyWhenUse5WordsTest() {
+        String plainText = "HELLOWORLDWKWKKWKW";
+        String strongPassword = "StrongKeyEver";
+        String cipherText = PlayfairCipher.encrypt5(plainText, strongPassword, false);
+        String decodedText = PlayfairCipher.decrypt(cipherText);
+        String actualText = decodedText.replace("Z", "");
+        Assert.assertEquals(plainText, actualText);
+    }
 }

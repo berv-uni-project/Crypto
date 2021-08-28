@@ -15,6 +15,24 @@ public class VigenereCipherTest {
     }
 
     @Test
+    public void encodeDecodeCorrectlyWhenUse5WordsTest() {
+        String plainText = "HELLOWORLDWKWKKWKW";
+        String strongPassword = "STRONGKEYEVER";
+        String cipher = VigenereCipher.encrypt5(plainText, strongPassword);
+        String decoded = VigenereCipher.decrypt(cipher, strongPassword);
+        Assert.assertEquals(plainText, decoded);
+    }
+
+    @Test
+    public void encodeDecodeCorrectlyWhenUseBruteForceTest() {
+        String plainText = "HELLOWORLDWKWKKWKW";
+        String strongPassword = "STRONGKEYEVER";
+        String cipher = VigenereCipher.encryptBrute(plainText, strongPassword);
+        String decoded = VigenereCipher.decrypt(cipher, strongPassword);
+        Assert.assertEquals(plainText, decoded);
+    }
+
+    @Test
     public void encodeDecodeWrongKeyTest() {
         String plainText = "HELLOWORLDWKWKKWKW";
         String strongPassword = "STRONGKEYEVER";
