@@ -9,11 +9,11 @@ on:
     branches: [ main ]
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: Java ${{ matrix.Java }} CI
     strategy:
       matrix:
-        java: [ '11', '13' ]
+        java: [ '15', '17' ]
     steps:
     - uses: actions/checkout@v5
     - name: Setup Java
@@ -28,14 +28,14 @@ jobs:
         ./gradlew check
         ./gradlew jacocoTestReport
     - name: Upload to Codecov
-      if: ${{ matrix.java == '11' }}
+      if: ${{ matrix.java == '15' }}
       run: bash <(curl -s https://codecov.io/bash)
     - name: Build with Gradle
       run: ./gradlew build
     - name: Build Javadoc
       run: ./gradlew javadoc
     - name: Deploy
-      if: ${{ matrix.java == '11' && github.event_name == 'push' }}
+      if: ${{ matrix.java == '15' && github.event_name == 'push' }}
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
