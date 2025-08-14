@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"Crypto"}]
+moduleSearchIndex = [{"l":"Crypto"}];updateSearchResults();
