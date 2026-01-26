@@ -35,4 +35,6 @@ jacocoTestReport {
 
 version = '0.1.0'
 
-mainClassName = 'crypto.sample.java.cli.Crypto'
+application {
+    mainClass = 'crypto.sample.java.cli.Crypto'
+}
