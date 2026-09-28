@@ -13,14 +13,14 @@ jobs:
     name: Java ${{ matrix.Java }} CI
     strategy:
       matrix:
-        java: [ '17', '21' ]
+        java: [ '21', '25' ]
     steps:
     - uses: actions/checkout@v7
     - name: Setup Java
       uses: actions/setup-java@v6
       with:
         java-version: ${{ matrix.java }}
-        distribution: 'adopt'
+        distribution: 'oracle'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Test
